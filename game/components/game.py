@@ -1,6 +1,6 @@
 import pygame
 
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from game.utils.constants import BG, EARTH, MOON, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 from game.components.spaceship import Spaceship
 
 class Game:
@@ -52,3 +52,19 @@ class Game:
             self.screen.blit(image, (self.x_pos_bg, self.y_pos_bg - image_height))
             self.y_pos_bg = 0
         self.y_pos_bg += self.game_speed
+
+        earth = pygame.transform.scale(EARTH, (50, 50))
+        image_height = earth.get_height()
+        self.screen.blit(earth, (280, self.y_pos_bg - image_height))
+        if self.y_pos_bg >= SCREEN_HEIGHT:
+            self.screen.blit(earth, (280, self.y_pos_bg - image_height))
+            self.y_pos_bg = 0
+        self.y_pos_bg += 5
+        
+        moon = pygame.transform.scale(MOON, (30, 30))
+        image_height = moon.get_height()
+        self.screen.blit(moon, (220, self.y_pos_bg - image_height))
+        if self.y_pos_bg >= SCREEN_HEIGHT:
+            self.screen.blit(moon, (220, self.y_pos_bg - image_height))
+            self.y_pos_bg = 0
+        self.y_pos_bg += 5

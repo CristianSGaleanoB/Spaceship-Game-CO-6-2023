@@ -15,6 +15,10 @@ SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
+MOON = pygame.image.load(os.path.join(IMG_DIR, 'Other/Moon.png'))
+
+EARTH = pygame.image.load(os.path.join(IMG_DIR, 'Other/earth.png'))
+
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
