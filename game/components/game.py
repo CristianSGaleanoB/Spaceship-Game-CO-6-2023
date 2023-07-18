@@ -4,6 +4,7 @@ from game.utils.constants import BG, EARTH, MOON, ICON, SCREEN_HEIGHT, SCREEN_WI
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import Enemyhandler
 from game.components.meteorite.meteorite_handler import Meteoritehandler
+from game.components.bullets.bullet_handler import Bullethandler
 
 class Game:
     def __init__(self):
@@ -18,7 +19,9 @@ class Game:
         self.y_pos_bg = 0
         self.player = Spaceship()
         self.enemy_handler = Enemyhandler()
+        self.bullet_handler = Bullethandler()
         self.meteorite = Meteoritehandler()
+        
 
     def run(self):
         # Game loop: events - update - draw
@@ -38,9 +41,12 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(self.game_speed, user_input)
+        self.enemy_handler.update(self.bullet_handler)
+        self.bullet_handler.update(self.player)
         self.meteorite.update()
-        self.enemy_handler.update()
-        
+        if not self.player.is_alive:
+            pygame.time.delay(5000)
+            self.playing = False
 
     def draw(self):
         self.clock.tick(FPS)
@@ -49,9 +55,10 @@ class Game:
         self.player.draw(self.screen)
         self.enemy_handler.draw(self.screen)
         self.meteorite.draw(self.screen)
+        self.bullet_handler.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
-
+ 
     def draw_background(self):
         image = pygame.transform.scale(BG, (SCREEN_WIDTH, SCREEN_HEIGHT))
         image_height = image.get_height()

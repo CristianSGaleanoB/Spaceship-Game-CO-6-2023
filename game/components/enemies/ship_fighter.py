@@ -16,12 +16,12 @@ class Figther_ship(Enemy):
         self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGHT))
         super().__init__(self.image)
 
-    def update(self):
-         self.move_fighter()
-         super().update()
+   #def update(self):
+    #     self.move_fighter()
+     #    super().update()
 
-    def move_fighter(self):
-        if self.index > self.INTERVAL:
-            self.rect.y -= self.MOVEMENT_X
-            self.rect.x += self.MOVEMENT_y
+    #def move_fighter(self):
+     #   if self.index > self.INTERVAL:
+      #      self.rect.y += self.MOVEMENT_X
+       #     self.rect.x += self.MOVEMENT_y
         

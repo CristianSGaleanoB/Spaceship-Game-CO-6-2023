@@ -3,14 +3,15 @@ from game.components.enemies.ship import Ship
 from game.components.enemies.ovni import Ovni
 from game.components.enemies.ship_fighter import Figther_ship
 
+
 class Enemyhandler:
     def __init__(self):
         self.enemies = []
 
-    def update(self):
+    def update(self, bullet_handler):
         self.add_enemy()
         for enemy in self.enemies:
-            enemy.update()
+            enemy.update(bullet_handler)
             if not enemy.is_visible:
                 self.remove_enemy(enemy)
     
@@ -19,7 +20,7 @@ class Enemyhandler:
             enemy.draw(screen)
     
     def add_enemy(self):
-        if len(self.enemies) < random.randrange(0, 5):
+        if len(self.enemies) < 5:
             self.enemies.append(Ship())
             self.enemies.append(Ovni())
             self.enemies.append(Figther_ship())
