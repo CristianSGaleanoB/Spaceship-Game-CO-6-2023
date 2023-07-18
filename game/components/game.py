@@ -3,6 +3,7 @@ import pygame
 from game.utils.constants import BG, EARTH, MOON, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import Enemyhandler
+from game.components.meteorite.meteorite_handler import Meteoritehandler
 
 class Game:
     def __init__(self):
@@ -17,6 +18,7 @@ class Game:
         self.y_pos_bg = 0
         self.player = Spaceship()
         self.enemy_handler = Enemyhandler()
+        self.meteorite = Meteoritehandler()
 
     def run(self):
         # Game loop: events - update - draw
@@ -36,7 +38,9 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(self.game_speed, user_input)
+        self.meteorite.update()
         self.enemy_handler.update()
+        
 
     def draw(self):
         self.clock.tick(FPS)
@@ -44,6 +48,7 @@ class Game:
         self.draw_background()
         self.player.draw(self.screen)
         self.enemy_handler.draw(self.screen)
+        self.meteorite.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 

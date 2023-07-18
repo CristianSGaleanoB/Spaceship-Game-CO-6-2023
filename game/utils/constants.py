@@ -19,6 +19,12 @@ MOON = pygame.image.load(os.path.join(IMG_DIR, 'Other/Moon.png'))
 
 EARTH = pygame.image.load(os.path.join(IMG_DIR, 'Other/earth.png'))
 
+METEOR = pygame.image.load(os.path.join(IMG_DIR, 'Other/meteor.png'))
+
+BIGROCK = pygame.image.load(os.path.join(IMG_DIR, 'Other/Bigrock.png'))
+
+METEORDOWN = pygame.image.load(os.path.join(IMG_DIR, 'Other/meteor down.png'))
+
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
@@ -30,6 +36,8 @@ BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_1.png"))
 
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
 ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_1.png"))
+FIGHTER_SHIP = pygame.image.load(os.path.join(IMG_DIR, "Enemy/ship_fighter.png"))
+OVNI = pygame.image.load(os.path.join(IMG_DIR, "Enemy/ovni.png"))
 
 FONT_STYLE = 'freesansbold.ttf'
 
