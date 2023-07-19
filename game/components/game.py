@@ -25,6 +25,7 @@ class Game:
         self.bullet_handler = BulletHandler()
         self.meteorite = Meteoritehandler()
         self.score = 0
+        self.score_max = 0
         self.number_deaths = 0
         
 
@@ -53,9 +54,11 @@ class Game:
             self.enemy_handler.update(self.bullet_handler)
             self.bullet_handler.update(self.player, self.enemy_handler.enemies)
             self.score = self.enemy_handler.enemies_basic_destroyed
+            if self.score > self.score_max:
+                self.score_max = self.score
             self.meteorite.update(self.player)
             if not self.player.is_alive:
-                pygame.time.delay(3000)
+                pygame.time.delay(1000)
                 self.playing = False
                 self.number_deaths += 1
 
@@ -101,13 +104,15 @@ class Game:
 
     def draw_menu(self):
         if self.number_deaths == 0:
-            text, text_Rect = text_utils.get_message('Press any key', 30, WHITE)
-            self.screen.blit(text, text_Rect)
+            text, text_rect = text_utils.get_message('Press any key', 30, WHITE)
+            self.screen.blit(text, text_rect)
         else:
-            text, text_rect = text_utils.get_message('press any hey to Restart', 30, WHITE)
+            text, text_rect = text_utils.get_message('press any key to Restart', 30, WHITE)
             score, score_rect = text_utils.get_message(f'Your score is: {self.score}', 30, WHITE, height= SCREEN_HEIGHT // 2 + 50)
-            self.screen.blit(text, text_Rect)
+            score_max, score_max_rect = text_utils.get_message(f'Max Score: {self.score_max}', 30, WHITE, height = SCREEN_HEIGHT // 2 - 50)
+            self.screen.blit(text, text_rect)
             self.screen.blit(score, score_rect)
+            self.screen.blit(score_max, score_max_rect)
 
     def draw_score(self):
         score, score_rect = text_utils.get_message(f'Your score is: {self.score}', 20, WHITE, 1000, 40)
