@@ -10,6 +10,7 @@ class Ovni(Enemy):
     MOVEMENT_y = 7
     MOVEMENT_X = 10
     INTERVAL = 80
+    SHOOTING_TIME = 20
     
     def __init__(self):
         self.image = OVNI

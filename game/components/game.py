@@ -1,6 +1,6 @@
 import pygame
 
-from game.utils.constants import BG, EARTH, MOON, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE, GAME_OVER
+from game.utils.constants import BG, EARTH, MOON, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE, GAME_OVER, NAME_GAME, MOVE, SHOOT, WIDTH_MOVE, WIDTH_SHOOT, HEIGHT_MOVE, HEIGHT_SHOOT
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import Enemyhandler
 from game.components.meteorite.meteorite_handler import Meteoritehandler
@@ -58,7 +58,7 @@ class Game:
                 self.score_max = self.score
             self.meteorite.update(self.player)
             if not self.player.is_alive:
-                pygame.time.delay(1000)
+                pygame.time.delay(500)
                 self.playing = False
                 self.number_deaths += 1
 
@@ -104,8 +104,28 @@ class Game:
 
     def draw_menu(self):
         if self.number_deaths == 0:
-            text, text_rect = text_utils.get_message('Press any key', 30, WHITE)
+            image = NAME_GAME
+            image_rect = image.get_rect()
+            image_rect.center = (SCREEN_WIDTH // 2 + 30, SCREEN_HEIGHT // 2 - 50)
+            image_move = MOVE
+            image_move = pygame.transform.scale(image_move, (WIDTH_MOVE, HEIGHT_MOVE))
+            image_move_rect = image_move.get_rect()
+            image_move_rect.center = (150, 440)
+            image_shoot = SHOOT
+            image_shoot = pygame.transform.scale(image_shoot, (WIDTH_SHOOT, HEIGHT_SHOOT))
+            image_shoot_rect = image_move.get_rect()
+            image_shoot_rect.center = (155, 545)
+            
+            text, text_rect = text_utils.get_message('Press any key to start', 30, WHITE, width = SCREEN_WIDTH // 2 - 30, height = SCREEN_HEIGHT // 2 + 80)
+            text_move, text_move_rect =text_utils.get_message('Move with: ', 20, WHITE, 60, 448 )
+            text_shoot, text_shoot_rect =text_utils.get_message('Shoot with: ', 20, WHITE, 60, 528 ) 
+            
+            self.screen.blit(text_shoot, text_shoot_rect)
+            self.screen.blit(text_move, text_move_rect)
             self.screen.blit(text, text_rect)
+            self.screen.blit(image, image_rect)
+            self.screen.blit(image_move, image_move_rect)
+            self.screen.blit(image_shoot, image_shoot_rect)
         else:
             image = GAME_OVER
             image_rect = image.get_rect()

@@ -49,4 +49,14 @@ BULLET_PLAYER_TYPE = 'player'
 
 GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, "Other/Gameover.png"))
 
+NAME_GAME = pygame.image.load(os.path.join(IMG_DIR, "Other/spacesurvival.png"))
+
+MOVE = pygame.image.load(os.path.join(IMG_DIR, "Other/move.png"))
+WIDTH_MOVE = 90
+HEIGHT_MOVE = 80
+
+SHOOT = pygame.image.load(os.path.join(IMG_DIR, "Other/space.png"))
+WIDTH_SHOOT = 100
+HEIGHT_SHOOT = 40
+
 WHITE = (255, 255, 255)

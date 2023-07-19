@@ -10,6 +10,7 @@ class Figther_ship(Enemy):
     MOVEMENT_y = 7
     MOVEMENT_X = 15
     INTERVAL = 30
+    SHOOTING_TIME = 30
 
     def __init__(self):
         self.image = FIGHTER_SHIP

@@ -14,5 +14,7 @@ class BulletPlayer(Bullet):
         super().__init__(self.image, center)
                  
     def update(self, enemy):
+        if self.rect.bottom < 0:
+            self.is_visible = False
         self.rect.y -= self.SPEED
         super().update(enemy)

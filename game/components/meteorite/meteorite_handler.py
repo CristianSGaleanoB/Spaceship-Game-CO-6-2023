@@ -20,10 +20,9 @@ class Meteoritehandler:
             meteorite.draw(screen)
     
     def add_meteorite(self):
-        if len(self.meteorites) < random.randrange(0, 3):
-            self.meteorites.append(Meteor())
-            self.meteorites.append(Bigrock())
-            self.meteorites.append(Meteordown())
+        if len(self.meteorites) < 5:
+            meteorite_type = random.choice([Meteor, Bigrock, Meteordown])
+            self.meteorites.append(meteorite_type())
     
     def remove_meteorite(self, meteorite):
         self.meteorites.remove(meteorite)

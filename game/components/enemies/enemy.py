@@ -8,7 +8,7 @@ class Enemy(pygame.sprite.Sprite):
     SPEED_Y = 5
     MOV_X = [LEFT, RIGTH]
     INTERVAL = 100
-    SHOOTING_TIME = 30
+    SHOOTING_TIME = 50
 
     def __init__(self, image):
         
@@ -36,6 +36,8 @@ class Enemy(pygame.sprite.Sprite):
 
     def move(self):
         self.rect.y += self.SPEED_Y
+      
+            
         if self.mov_x == LEFT:
             self.rect.x -= self.SPEED_X
             if self.index > self.INTERVAL or self.rect.x <= 0:

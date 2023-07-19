@@ -9,10 +9,13 @@ class BulletHandler:
     def update(self, player, enemies):
         for bullet in self.bullets:
             if type(bullet) == BulletEnemy:
+
                 bullet.update(player)
             elif type(bullet) == BulletPlayer:
                 for enemy in enemies:
                     bullet.update(enemy)
+            if not bullet.is_alive or not bullet.is_visible:
+                self.remove_bullet(bullet)
 
     def draw(self, screen):
         for bullet in self.bullets:
