@@ -8,10 +8,10 @@ class Meteoritehandler:
     def __init__(self):
         self.meteorites = []
 
-    def update(self):
+    def update(self, player):
         self.add_meteorite()
         for meteorite in self.meteorites:
-            meteorite.update()
+            meteorite.update(player)
             if not meteorite.is_visible:
                 self.remove_meteorite(meteorite)
     
@@ -22,8 +22,11 @@ class Meteoritehandler:
     def add_meteorite(self):
         if len(self.meteorites) < random.randrange(0, 3):
             self.meteorites.append(Meteor())
-            #self.meteorites.append(Bigrock())
+            self.meteorites.append(Bigrock())
             self.meteorites.append(Meteordown())
     
     def remove_meteorite(self, meteorite):
         self.meteorites.remove(meteorite)
+
+    def reset(self):
+        self.meteorites = []

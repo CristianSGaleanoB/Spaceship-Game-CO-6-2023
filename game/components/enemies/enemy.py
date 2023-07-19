@@ -1,7 +1,8 @@
+import pygame
 import random
 from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT, LEFT, RIGTH, BULLET_ENEMY_TYPE
 
-class Enemy:
+class Enemy(pygame.sprite.Sprite):
     Y_POS = 0
     SPEED_X = 5
     SPEED_Y = 5
@@ -10,6 +11,7 @@ class Enemy:
     SHOOTING_TIME = 30
 
     def __init__(self, image):
+        
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(image.get_width(), SCREEN_WIDTH - image.get_width())
@@ -18,6 +20,8 @@ class Enemy:
         self.index = 0
         self.shooting_time = 0
         self.is_visible = True
+        self.is_alive = True
+        super().__init__()
     
     def update(self, bullet_handler):
         self.index += 1

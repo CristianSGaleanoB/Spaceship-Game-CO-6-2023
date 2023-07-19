@@ -1,55 +1,47 @@
 import pygame
-import math
 
+# Inicialización de Pygame
 pygame.init()
 
-# Definir los colores
-BLANCO = (255, 255, 255)
-NEGRO = (0, 0, 0)
+# Dimensiones de la ventana del juego
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 600
 
-# Definir las dimensiones de la pantalla
-ANCHO = 800
-ALTO = 600
+# Colores
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
 
-# Crear la pantalla
-pantalla = pygame.display.set_mode((ANCHO, ALTO))
-pygame.display.set_caption("Movimiento circular")
+# Crear la ventana del juego
+window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Ejemplo de Colisión")
 
-# Definir las coordenadas y el radio del círculo
-center_x = ANCHO // 2
-center_y = ALTO // 2
-radius = 100
+# Rectángulos de los objetos
+rect1 = pygame.Rect(100, 100, 50, 50)
+rect2 = pygame.Rect(200, 100, 50, 50)
 
-# Definir la velocidad y el ángulo de movimiento
-speed = 2
-angle = 0
+# Game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-# Bucle principal del juego
-jugando = True
-clock = pygame.time.Clock()
-while jugando:
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            jugando = False
+    # Actualizar la posición de los rectángulos
+    rect1.x += 1
 
-    # Limpiar la pantalla
-    pantalla.fill(BLANCO)
+    # Comprobar colisión entre los rectángulos
+    if rect1.colliderect(rect2):
+        print("¡Colisión!")
 
-    # Calcular las coordenadas del objeto en función del ángulo y el radio
-    objeto_x = center_x + int(math.cos(math.radians(angle)) * radius)
-    objeto_y = center_y + int(math.sin(math.radians(angle)) * radius)
+    # Limpiar la ventana
+    window.fill(BLACK)
 
+    # Dibujar los rectángulos
+    pygame.draw.rect(window, RED, rect1)
+    pygame.draw.rect(window, RED, rect2)
 
-    # Dibujar el objeto en las coordenadas (objeto_x, objeto_y)
-    objeto_rect = pygame.Rect(objeto_x - 10, objeto_y - 10, 20, 20)
-    pygame.draw.rect(pantalla, NEGRO, objeto_rect)
+    # Actualizar la ventana
+    pygame.display.update()
 
-    # Actualizar el ángulo de movimiento
-    angle += speed
-
-    # Actualizar la pantalla
-    pygame.display.flip()
-    clock.tick(60)  # Limitar la velocidad de fotogramas a 60 FPS
-
-# Salir del juego
+# Finalizar Pygame
 pygame.quit()

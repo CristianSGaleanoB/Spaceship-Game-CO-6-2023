@@ -16,7 +16,9 @@ class Meteorite:
         self.mov_x = random.choice(self.MOV_X)
         self.is_visible = True
     
-    def update(self):
+    def update(self, object):    
+        if self.rect.colliderect(object.rect):
+            object.is_alive = False
         self.move()
         if self.rect.y >= SCREEN_HEIGHT:
             self.is_visible = False

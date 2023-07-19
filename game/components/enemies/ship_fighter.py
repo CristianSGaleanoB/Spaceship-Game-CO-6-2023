@@ -18,7 +18,7 @@ class Figther_ship(Enemy):
 
    #def update(self):
     #     self.move_fighter()
-     #    super().update()
+     
 
     #def move_fighter(self):
      #   if self.index > self.INTERVAL:
