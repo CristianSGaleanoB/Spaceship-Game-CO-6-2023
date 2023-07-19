@@ -1,6 +1,6 @@
 import pygame
 
-from game.utils.constants import BG, EARTH, MOON, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE 
+from game.utils.constants import BG, EARTH, MOON, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE, GAME_OVER
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import Enemyhandler
 from game.components.meteorite.meteorite_handler import Meteoritehandler
@@ -62,7 +62,6 @@ class Game:
                 self.playing = False
                 self.number_deaths += 1
 
-    
     def draw(self):
         self.draw_background()
         if self.playing:
@@ -108,12 +107,18 @@ class Game:
             text, text_rect = text_utils.get_message('Press any key', 30, WHITE)
             self.screen.blit(text, text_rect)
         else:
-            text, text_rect = text_utils.get_message('press any key to Restart', 30, WHITE)
-            score, score_rect = text_utils.get_message(f'Your score is: {self.score}', 30, WHITE, height= SCREEN_HEIGHT // 2 + 50)
-            score_max, score_max_rect = text_utils.get_message(f'Max Score: {self.score_max}', 30, WHITE, height = SCREEN_HEIGHT // 2 - 50)
+            image = GAME_OVER
+            image_rect = image.get_rect()
+            image_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 50)
+            text, text_rect = text_utils.get_message('press any key to Restart', 30, WHITE)            
+            score_max, score_max_rect = text_utils.get_message(f'Max Score: {self.score_max}', 30, WHITE, height = SCREEN_HEIGHT // 2 + 50)
+            score_attemps, score_attemps_rect = text_utils.get_message(f'Attemp number: {self.number_deaths}', 30, WHITE, height = SCREEN_HEIGHT // 2 + 100)
+            score, score_rect = text_utils.get_message(f'Your score is: {self.score}', 30, WHITE, height= SCREEN_HEIGHT // 2 + 150)
             self.screen.blit(text, text_rect)
             self.screen.blit(score, score_rect)
             self.screen.blit(score_max, score_max_rect)
+            self.screen.blit(score_attemps, score_attemps_rect)
+            self.screen.blit(image, image_rect)
 
     def draw_score(self):
         score, score_rect = text_utils.get_message(f'Your score is: {self.score}', 20, WHITE, 1000, 40)
