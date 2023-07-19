@@ -62,6 +62,7 @@ class Game:
                 self.playing = False
                 self.number_deaths += 1
 
+    
     def draw(self):
         self.draw_background()
         if self.playing:
