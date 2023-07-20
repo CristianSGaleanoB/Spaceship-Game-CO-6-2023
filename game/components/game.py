@@ -5,6 +5,7 @@ from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import Enemyhandler
 from game.components.meteorite.meteorite_handler import Meteoritehandler
 from game.components.bullets.bullet_handler import BulletHandler
+from game.components.power_ups.power_up_handler import PoweUpHandler
 from game.utils import text_utils
 
 
@@ -24,6 +25,7 @@ class Game:
         self.enemy_handler = Enemyhandler()
         self.bullet_handler = BulletHandler()
         self.meteorite = Meteoritehandler()
+        self.power_up = PoweUpHandler()
         self.score = 0
         self.score_max = 0
         self.number_deaths = 0
@@ -53,6 +55,7 @@ class Game:
             self.player.update(self.game_speed, user_input, self.bullet_handler)
             self.enemy_handler.update(self.bullet_handler)
             self.bullet_handler.update(self.player, self.enemy_handler.enemies)
+            self.power_up.update(self.player)
             self.score = self.enemy_handler.enemies_basic_destroyed
             if self.score > self.score_max:
                 self.score_max = self.score
@@ -70,6 +73,7 @@ class Game:
             self.enemy_handler.draw(self.screen)
             self.meteorite.draw(self.screen)
             self.bullet_handler.draw(self.screen)
+            self.power_up.draw(self.screen)
             self.draw_score()
         else:
             self.draw_menu() 
@@ -149,4 +153,5 @@ class Game:
         self.enemy_handler.reset()
         self.bullet_handler.reset()
         self.meteorite.reset()
+        self.power_up.reset()
         self.score = 0       

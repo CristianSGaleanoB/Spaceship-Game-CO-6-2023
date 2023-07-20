@@ -9,7 +9,7 @@ class Enemyhandler:
     def __init__(self):
         self.enemies = []
         self.enemies_basic_destroyed = 0
-        self.spawn_time = 100
+        self.spawn_time = 10
         self.current_spawn_time = self.spawn_time
     
     def update(self, bullet_handler):
