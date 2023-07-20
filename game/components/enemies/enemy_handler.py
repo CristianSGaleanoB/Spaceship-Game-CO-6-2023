@@ -28,7 +28,7 @@ class Enemyhandler:
             if not boss.is_visible or not boss.is_alive:
                 self.remove_boss(boss)    
             if not boss.is_alive:
-                self.boss_destroyed += 50
+                self.boss_destroyed += 1000
     
     def draw(self, screen):
         for boss in self.bosses:

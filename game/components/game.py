@@ -62,7 +62,7 @@ class Game:
             self.bullet_handler.update(self.player, self.enemy_handler.enemies, self.enemy_handler.bosses)
             self.power_up_handler.update(self.player)
             self.score = self.enemy_handler.enemies_basic_destroyed + self.enemy_handler.boss_destroyed + self.score_travel
-            self.score_bosses = self.enemy_handler.boss_destroyed // 50
+            self.score_bosses = self.enemy_handler.boss_destroyed // 1000
             if self.score > self.score_max:
                 self.score_max = self.score
             self.meteorite.update(self.player)
