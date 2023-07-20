@@ -58,5 +58,5 @@ class Enemyhandler:
         self.bosses = []
         self.enemies_basic_destroyed = 0
         self.boss_destroyed = 0
-        self.spawn_time = 100
+        self.spawn_time = 300
         self.current_spawn_time = self.spawn_time
