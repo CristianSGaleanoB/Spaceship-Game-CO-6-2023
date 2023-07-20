@@ -8,8 +8,9 @@ class Bullet:
 
     def update(self, object):
         if self.rect.colliderect(object.rect):
-            object.is_alive = False
             self.is_alive = False
-
+            object.life -= 1
+            if object.life == 0:
+                    object.is_alive = False
     def draw(self, screen):
         screen.blit(self.image, self.rect)

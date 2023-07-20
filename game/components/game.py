@@ -127,10 +127,16 @@ class Game:
             image_shoot_rect.center = (155, 545)
             
             text, text_rect = text_utils.get_message('Press any key to start', 30, WHITE, width = SCREEN_WIDTH // 2 - 30, height = SCREEN_HEIGHT // 2 + 80)
+            text_tip, text_tip_rect = text_utils.get_message('TIP: The boos survive 25 bullets', 20, WHITE, 180, 20 )
+            text_tip1, text_tip1_rect = text_utils.get_message('The other enemies survive minus 10 bullets', 20, WHITE, 230, 40 )
+            text_tip2, text_tip2_rect = text_utils.get_message('Be careful whit meteors they only need 1 hit', 20, WHITE, 230, 60 )
             text_to_player, text_to_player_rect = text_utils.get_message('Play with ur friends and tell us who have the best score :)', 30, WHITE, width = SCREEN_WIDTH // 2 - 30, height = SCREEN_HEIGHT // 2 - 120)
             text_move, text_move_rect =text_utils.get_message('Move with: ', 20, WHITE, 60, 448 )
             text_shoot, text_shoot_rect =text_utils.get_message('Shoot with: ', 20, WHITE, 60, 528 ) 
             
+            self.screen.blit(text_tip2, text_tip2_rect)
+            self.screen.blit(text_tip1, text_tip1_rect)
+            self.screen.blit(text_tip, text_tip_rect)
             self.screen.blit(text_to_player, text_to_player_rect)
             self.screen.blit(text_shoot, text_shoot_rect)
             self.screen.blit(text_move, text_move_rect)

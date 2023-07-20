@@ -9,6 +9,7 @@ class Enemy(pygame.sprite.Sprite):
     MOV_X = [LEFT, RIGTH]
     INTERVAL = 100
     SHOOTING_TIME = 50
+    LIFE = 5
 
     def __init__(self, image, type):
         self.image = image
@@ -21,6 +22,7 @@ class Enemy(pygame.sprite.Sprite):
         self.is_visible = True
         self.is_alive = True
         self.type = type
+        self.life = self.LIFE
     
     def update(self, bullet_handler):
         self.index += 1

@@ -9,6 +9,7 @@ class Boss(Enemy):
     SPEED_Y = 3
     INTERVAL = 130
     SHOOTING_TIME = 15
+    LIFE = 25
     
     def __init__(self):
         self.image = BOSS

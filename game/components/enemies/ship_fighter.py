@@ -11,6 +11,7 @@ class Figther_ship(Enemy):
     MOVEMENT_X = 15
     INTERVAL = 30
     SHOOTING_TIME = 30
+    LIFE = 7
 
 
     def __init__(self):

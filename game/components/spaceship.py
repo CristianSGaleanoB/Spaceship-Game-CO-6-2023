@@ -1,14 +1,15 @@
 import pygame
-from game.utils.constants import SPACESHIP, SPACESHIP_SHIELD, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, SPACESHIP_GODPOWER
+from game.utils.constants import SPACESHIP, SPACESHIP_SHIELD, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, SPACESHIP_GODPOWER, WHITE
 from game.components.power_ups.shield import Shield
 from game.components.power_ups.god_power_up import GodPower
+from game.utils import text_utils
 
 class Spaceship:
     WIDTH = 40
     HEIGHT = 60
     X_POS = (SCREEN_WIDTH // 2) - WIDTH
     Y_POS =  500
-    VELOCITY = 20
+    LIFE = 3
 
    
     def __init__(self):
@@ -22,6 +23,8 @@ class Spaceship:
         self.has_shield = False
         self.has_godpower = False
         self.time_up = 0
+        self.life = self.LIFE
+        
 
     def update(self, velocity, user_input, bullet_handler):
         if self.has_godpower:
@@ -48,6 +51,8 @@ class Spaceship:
         
 
     def draw(self,screen):
+        text, text_rect = text_utils.get_message(f'LIFES: {self.life}', 20, WHITE,  70, 20 )
+        screen.blit(text, text_rect)
         screen.blit(self.image, self.rect)
 
     def modify_velocity(self, velocity):
@@ -109,3 +114,4 @@ class Spaceship:
         self.is_alive = True
         self.has_shield = False
         self.has_godpower = False
+        self.life = self.LIFE

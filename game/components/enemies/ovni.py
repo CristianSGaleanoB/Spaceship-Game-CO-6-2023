@@ -11,6 +11,7 @@ class Ovni(Enemy):
     MOVEMENT_X = 10
     INTERVAL = 80
     SHOOTING_TIME = 20
+    LIFE = 5
 
     
     def __init__(self):
