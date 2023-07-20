@@ -11,11 +11,13 @@ class Ovni(Enemy):
     MOVEMENT_X = 10
     INTERVAL = 80
     SHOOTING_TIME = 20
+
     
     def __init__(self):
         self.image = OVNI
         self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGHT))
-        super().__init__(self.image)
+        self.type = 'normal'
+        super().__init__(self.image, self.type)
     
     #def update(self):
      #    self.move_ovni()

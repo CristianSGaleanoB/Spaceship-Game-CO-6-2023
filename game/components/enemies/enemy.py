@@ -10,8 +10,7 @@ class Enemy(pygame.sprite.Sprite):
     INTERVAL = 100
     SHOOTING_TIME = 50
 
-    def __init__(self, image):
-        
+    def __init__(self, image, type):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(image.get_width(), SCREEN_WIDTH - image.get_width())
@@ -21,7 +20,7 @@ class Enemy(pygame.sprite.Sprite):
         self.shooting_time = 0
         self.is_visible = True
         self.is_alive = True
-        super().__init__()
+        self.type = type
     
     def update(self, bullet_handler):
         self.index += 1
@@ -30,6 +29,7 @@ class Enemy(pygame.sprite.Sprite):
         self.shoot(bullet_handler)
         if self.rect.y >= SCREEN_HEIGHT:
             self.is_visible = False
+
         
     def draw(self, screen):
         screen.blit(self.image, self.rect)

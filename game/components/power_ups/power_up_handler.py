@@ -1,7 +1,12 @@
-from game.components.power_ups.shield import Shield
+import random
 
-class PoweUpHandler:
-    INTERVAL_TIME = 300
+from game.components.power_ups.shield import Shield
+from game.components.power_ups.god_power_up import GodPower
+
+class PowerUpHandler:
+    INTERVAL_TIME = random.randint(100, 300)
+
+
     def __init__(self):
         self.powerups = []
         self.interval_time = 0
@@ -22,7 +27,10 @@ class PoweUpHandler:
             power_up.draw(screen)
 
     def add_power_up(self):
-        self.powerups.append(Shield())
+        if len(self.powerups) < 5:
+            power_type = random.choice([Shield, GodPower])
+            self.powerups.append(power_type())
+ 
 
     def remove_power_up(self, power_up):
         self.powerups.remove(power_up)

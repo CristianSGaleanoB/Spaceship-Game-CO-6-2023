@@ -8,11 +8,14 @@ from game.components.enemies.boss import Boss
 class Enemyhandler:
     def __init__(self):
         self.enemies = []
+        self.bosses = []
         self.enemies_basic_destroyed = 0
-        self.spawn_time = 10
-        self.current_spawn_time = self.spawn_time
+        self.boss_destroyed = 0
+        self.spawn_time = 300 
+        self.current_spawn_time = self.spawn_time 
     
     def update(self, bullet_handler):
+        
         self.add_enemy()
         for enemy in self.enemies:
             enemy.update(bullet_handler)
@@ -20,15 +23,23 @@ class Enemyhandler:
                 self.remove_enemy(enemy)    
             if not enemy.is_alive:
                 self.enemies_basic_destroyed += 1
+        for boss in self.bosses:
+            boss.update(bullet_handler)
+            if not boss.is_visible or not boss.is_alive:
+                self.remove_boss(boss)    
+            if not boss.is_alive:
+                self.boss_destroyed += 50
     
     def draw(self, screen):
+        for boss in self.bosses:
+            boss.draw(screen)
         for enemy in self.enemies:
             enemy.draw(screen)
     
     def add_enemy(self):
         self.current_spawn_time -= 1
         if self.current_spawn_time <= 0:
-            self.enemies.append(Boss())
+            self.bosses.append(Boss())
             self.current_spawn_time = self.spawn_time
         if len(self.enemies) < 5:
             enemy_type = random.choice([Ship, Ovni, Figther_ship])
@@ -37,9 +48,15 @@ class Enemyhandler:
     
     def remove_enemy(self, enemy):
         self.enemies.remove(enemy)
+    
+    def remove_boss(self, boss):
+        self.bosses.remove(boss)
+ 
 
     def reset(self):
         self.enemies = []
+        self.bosses = []
         self.enemies_basic_destroyed = 0
-        self.spawn_time = 500
+        self.boss_destroyed = 0
+        self.spawn_time = 100
         self.current_spawn_time = self.spawn_time

@@ -25,7 +25,5 @@ class PowerUp:
             self.is_used = True
             self.time_up = pygame.time.get_ticks() + self.DURATION
         
-
-
     def draw(self, screen):
         screen.blit(self.image, self.rect)

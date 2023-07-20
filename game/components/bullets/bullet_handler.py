@@ -6,12 +6,13 @@ class BulletHandler:
     def __init__(self):
         self.bullets = []
 
-    def update(self, player, enemies):
+    def update(self, player, enemies, bosses):
         for bullet in self.bullets:
             if type(bullet) == BulletEnemy:
-
                 bullet.update(player)
             elif type(bullet) == BulletPlayer:
+                for boss in bosses:
+                    bullet.update(boss)
                 for enemy in enemies:
                     bullet.update(enemy)
             if not bullet.is_alive or not bullet.is_visible:

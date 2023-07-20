@@ -12,10 +12,12 @@ class Figther_ship(Enemy):
     INTERVAL = 30
     SHOOTING_TIME = 30
 
+
     def __init__(self):
         self.image = FIGHTER_SHIP
         self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGHT))
-        super().__init__(self.image)
+        self.type = 'normal'
+        super().__init__(self.image, self.type)
 
    #def update(self):
     #     self.move_fighter()

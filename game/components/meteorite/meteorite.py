@@ -16,12 +16,14 @@ class Meteorite:
         self.mov_x = random.choice(self.MOV_X)
         self.is_visible = True
     
-    def update(self, object):    
-        if self.rect.colliderect(object.rect):
-            object.is_alive = False
+    def update(self, player):    
         self.move()
         if self.rect.y >= SCREEN_HEIGHT:
             self.is_visible = False
+        if not player.has_shield and not player.has_godpower:
+            if self.rect.colliderect(player.rect):
+                player.is_alive = False
+        
         
     def draw(self, screen):
         screen.blit(self.image, self.rect)

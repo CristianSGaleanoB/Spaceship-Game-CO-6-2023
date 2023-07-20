@@ -18,6 +18,6 @@ class BulletEnemy(Bullet):
             self.is_visible = False
             self.is_alive = False
         self.rect.y += self.SPEED
-        if not player.has_shield:
+        if not player.has_shield and not player.has_godpower:
             super().update(player)
         
